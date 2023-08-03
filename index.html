@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #quiz {
+      max-width: 500px;
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    #results {
+      max-width: 500px;
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      display: none;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    p {
+      margin: 5px 0;
+    }
+
+    input[type="radio"] {
+      margin-right: 5px;
+    }
+
+    button {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="quiz">
+    <h2>Question 1:</h2>
+    <p>What is the capital of France?</p>
+    <input type="radio" name="q1" value="a">a) London<br>
+    <input type="radio" name="q1" value="b">b) Paris<br>
+    <input type="radio" name="q1" value="c">c) Berlin<br>
+    <input type="radio" name="q1" value="d">d) Rome<br>
+    
+    <h2>Question 2:</h2>
+    <p>What is the largest planet in our solar system?</p>
+    <input type="radio" name="q2" value="a">a) Earth<br>
+    <input type="radio" name="q2" value="b">b) Mars<br>
+    <input type="radio" name="q2" value="c">c) Jupiter<br>
+    <input type="radio" name="q2" value="d">d) Saturn<br>
+
+    <!-- Add more questions here following the same pattern -->
+
+    <br>
+    <button onclick="showResults()">Submit</button>
+  </div>
+
+  <div id="results">
+    <h2>Results:</h2>
+    <p id="score"></p>
+  </div>
+
+  <script>
+    function showResults() {
+      const questions = 10; // Total number of questions
+      let score = 0;
+
+      for (let i = 1; i <= questions; i++) {
+        const selectedOption = document.querySelector(`input[name=q${i}]:checked`);
+        if (selectedOption) {
+          if (selectedOption.value === "b") { // Correct answer value for question i
+            score++;
+          }
+        }
+      }
+
+      const resultsDiv = document.getElementById("results");
+      const scoreParagraph = document.getElementById("score");
+      scoreParagraph.innerText = `You scored ${score} out of ${questions}.`;
+      resultsDiv.style.display = "block";
+      document.getElementById("quiz").style.display = "none";
+    }
+  </script>
+</body>
+</html>
